@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Initializing a grid from HTML</title>
+    <link rel="stylesheet" type="text/css" href="/spring/resources/dhtmlx/codebase/dhtmlx.css">
+    <script src="/spring/resources/dhtmlx/codebase/dhtmlx.js"></script>
+    <script src="/spring/resources/js/jquery-3.2.1.js"></script>
+</head>
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url : "/spring/h2",
+		success : function(data){
+			alert(data);
+		},
+		error : function(xhr){
+			alert(2);
+			alert(xhr.responseText);
+		}
+		
+	})
+});
+
+
+
+
+</script>
+<body>
+    <table id="books_table" class="dhtmlxGrid" style="width:500px; height:350px;"> 
+    	<tr> 
+        	<td>이름</td>      
+        	<td>나이</td>       
+    	</tr>
+    	<tr> 
+       	 	<td>윤재형</td>  
+       		<td>10</td> 
+   	 	</tr>
+    	<tr> 
+        	<td>송명훈</td> 
+        	<td>20</td> 
+    	</tr>
+    	<tr> 
+       	 	<td>윤재형</td>  
+       		<td>10</td> 
+   	 	</tr>
+   	 	<tr> 
+       	 	<td>윤재형</td>  
+       		<td>10</td> 
+   	 	</tr>
+	</table>
+</body>
+</html>

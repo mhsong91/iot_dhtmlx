@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Loading from JSON</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"/> -->
+	<link rel="stylesheet" type="text/css" href="../codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="../codebase/dhtmlx.css"/>
+	<script src="../codebase/dhtmlx.js"></script>
+	<script src="/spring/resources/js/jquery-3.2.1.js"></script>
+	<script>
+/* 	var gObj;
+ */
+var jsonData;
+ var data;
+	$(document).ready(function(){
+		var gObj = document.getElementById("testdiv");
+		//gObj.setColumns(['이름','나이']);
+		
+		$.ajax({
+			url : "/spring/h2",
+			success : function(res){
+				alert(res[0].name);
+				data={rows:[{ id:1, data:[ res[0].name, res[0].age ] }, { id:2,data:[ res[1].name, res[1].age ] }, { id:3,data:[ res[2].name, res[2].age ] }]};
+				alert(data);
+				doOnLoad(data);
+			},
+			error : function(xhr){
+				alert(2);
+				alert(xhr.responseText);
+			}
+			
+		})
+	});  
+		//var data={rows:[{ id:1001, data:[ "100", "A Time to Kill" ] }, { id:1002,data:[ "1000", "Blood and Smoke" ] }]};
+		
+		var myGrid;
+		function doOnLoad(data){
+			myGrid = new dhtmlXGridObject('gridbox');
+			//myGrid.setImagePath("../../../codebase/imgs/");
+			myGrid.setHeader("이름, 나이");
+			myGrid.setInitWidths("70,250");
+			myGrid.setColAlign("right,left");
+			myGrid.setColTypes("dyn,ed");
+			myGrid.setColSorting("str,int");
+			myGrid.init();
+			myGrid.parse(data);
+		}
+	</script>
+</head>
+<body>
+	<h1>Loading from JSON</h1>
+	<p>Grid allows to load data from JSON file and object.</p>
+	<div id="testdiv"></div>
+	<div id="gridbox" style="width:500px; height:350px; background-color:white;"></div>
+	<br>
+	<a href="javascript:void(0)" onclick='myGrid.clearAll();alert("old data cleared\nloading new one..."); myGrid.parse(${data},"json")'>Reload from JSON object</a><br/>
+</body>
+</html>
