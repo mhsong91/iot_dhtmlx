@@ -26,7 +26,7 @@ public class UrlController {
 		return url.replace(rootPath+"/path/", "");
 	}
 	
-	@RequestMapping("/path/**")
+	@RequestMapping("/path")
 	public String forwardJsp(HttpServletRequest request) {
 		String url = request.getRequestURI();
 		logger.info("url =>{}",url);

@@ -10,7 +10,7 @@ public interface EmpDAO {
 	public List<Emp> selectEmpList();
 	public Emp selectEmp();
 	public int insertEmp(Map<String,Object> map);
-	public int deleteEmp();
-	public int updateEmp();
+	public int deleteEmp(Map<String,Object> map);
+	public int updateEmp(Map<String,Object> map);
 
 }

@@ -39,15 +39,15 @@ public class EmpServicImpl implements EmpService {
 	}
 
 	@Override
-	public int deleteEmp() {
+	public int deleteEmp(Map<String,Object> map) {
 		
-		return 0;
+		return edao.deleteEmp(map);
 	}
 
 	@Override
-	public int updateEmp() {
+	public int updateEmp(Map<String,Object> map) {
 		
-		return 0;
+		return edao.updateEmp(map);
 	}
 
 }

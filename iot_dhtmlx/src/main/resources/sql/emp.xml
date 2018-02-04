@@ -10,11 +10,11 @@
 	insert into emp(empName,empSal) 
 	values(#{empName},#{empSal})
 	</select>
-	<select id="updateEmp" resultType="map">
+	<select id="updateEmp" resultType="map" parameterType="map">
 	update emp 
 	set empName=#{empName}, empSal=#{empSal} where empNo=#{empNo}
 	</select>
-	<select id="deleteEmp" resultType="map">
+	<select id="deleteEmp" resultType="map" parameterType="map">
 	delete from emp where empNo=#{empNo}
 	</select>
 </mapper>

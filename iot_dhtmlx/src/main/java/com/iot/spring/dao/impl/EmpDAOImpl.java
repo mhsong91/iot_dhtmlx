@@ -41,14 +41,17 @@ public class EmpDAOImpl implements EmpDAO {
 	}
 
 	@Override
-	public int deleteEmp() {
-		
-		return 0;
+	public int deleteEmp(Map<String,Object> map) {
+		SqlSession ss=ssf.openSession();
+//		int to= Integer.parseInt((String) delete);
+		int del=ss.delete("emp.deleteEmp",map);
+		return del;
 	}
 
 	@Override
-	public int updateEmp() {
-		
+	public int updateEmp(Map<String,Object> map) {
+		SqlSession ss=ssf.openSession();
+		int update=ss.update("emp.updateEmp",map);
 		return 0;
 	}
 

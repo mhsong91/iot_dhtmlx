@@ -9,6 +9,6 @@ public interface EmpService {
 	public List<Emp> getEmpList();
 	public Emp getEmp();
 	public int insertEmp(Map<String,Object> map);
-	public int deleteEmp();
-	public int updateEmp();
+	public int deleteEmp(Map<String,Object> map);
+	public int updateEmp(Map<String,Object> map);
 }

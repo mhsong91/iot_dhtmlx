@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iot.spring.Service.EmpService;
 import com.iot.spring.vo.Emp;
@@ -47,4 +48,33 @@ public class EmpContoller {
 		es.insertEmp(map);
 		return "emp/write";
 	}
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+		
+	public String delete(@RequestParam(value="delete") int delete, Model m) {
+		 Map<String,Object> map=new HashMap<String,Object>();
+		map.put("empNo", delete);
+		es.deleteEmp(map);
+			return "emp/delete";
+		}
+	
+ 
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	
+	public String update(@RequestParam(value="upno") int upno, 
+			@RequestParam(value="upname") String upname,
+			@RequestParam(value="upsal") int upsal,			
+			Model m) {
+	 Map<String,Object> map=new HashMap<String,Object>();
+		
+		map.put("empNo", upno);
+		map.put("empName", upname);
+		map.put("empSal", upsal);
+		es.updateEmp(map);
+			return "emp/update";
+		}
+	
+		
+		
+	
+	
 }
