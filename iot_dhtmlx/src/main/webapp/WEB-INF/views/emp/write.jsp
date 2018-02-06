@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <jsp:include page="/WEB-INF/views/emp/view.jsp" flush="true"/>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +8,7 @@
 
 <title>Insert title here</title>
 </head>
-<body>
+<body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxLRM0JmtjmWKwZZ3KIhA2NQGzo4bROc00ontiDPg4sDy7NC1ukA">
 <h1>입사원관리^^</h1>
 <form:form commandName="empDTO" action="${root}/emp/insert" method="get">
 이름 : <input type="text" name="empName" id="empName" value="${empDTO.empName}"><br>
