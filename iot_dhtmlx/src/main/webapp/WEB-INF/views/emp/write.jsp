@@ -8,12 +8,12 @@
 
 <title>Insert title here</title>
 </head>
-<body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxLRM0JmtjmWKwZZ3KIhA2NQGzo4bROc00ontiDPg4sDy7NC1ukA">
+<body >
 <h1>입사원관리^^</h1>
 <form:form commandName="empDTO" action="${root}/emp/insert" method="get">
-이름 : <input type="text" name="empName" id="empName" value="${empDTO.empName}"><br>
-월급 : <input type="text" name="empSal" id="empSal" value="${empDTO.empSal}"><br>
-<button>사원정보 추가</button>
+이름 : <input  type="text" name="empName" id="empName" value="${empDTO.empName}"><br>
+월급 : <input   type="text" name="empSal" id="empSal" value="${empDTO.empSal}"><br>
+<button class="ghost-button" target="_blank">사원정보 추가</button>
 
 </form:form>
 

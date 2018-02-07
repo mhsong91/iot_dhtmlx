@@ -34,6 +34,7 @@
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/common/common.jspf</include-prelude>
+			<include-prelude>/WEB-INF/views/common/header.jspf</include-prelude>
 				</jsp-property-group>
 	</jsp-config>
 	

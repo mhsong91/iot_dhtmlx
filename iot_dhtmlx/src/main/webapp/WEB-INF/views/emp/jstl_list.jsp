@@ -10,7 +10,7 @@
 
 <title>Insert title here</title>
 </head>
-<body  background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxLRM0JmtjmWKwZZ3KIhA2NQGzo4bROc00ontiDPg4sDy7NC1ukA">
+<body >
 <div class="container">
 <table border="1" class="table table-bordered">
 <tr>

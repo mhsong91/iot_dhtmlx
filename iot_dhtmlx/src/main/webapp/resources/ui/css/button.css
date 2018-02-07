@@ -1,0 +1,25 @@
+body {
+  
+  text-align: center;
+  padding-top: 20px;
+}
+
+.ghost-button {
+    color:  #C7B7A7;
+    background: #fff;
+    border: 1px solid  #8D8A89;
+    font-size: 17px;
+    padding: 7px 12px;
+    font-weight: normal;
+    margin: 6px 0;
+    margin-right: 12px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    min-width: 120px;
+}
+
+.ghost-button:hover, .ghost-button:active {
+  color:#fff;
+  background: #C7B7A7;
+}
