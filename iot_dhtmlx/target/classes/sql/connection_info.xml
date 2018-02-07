@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Connection">
+	<select id="selectConnection" resultType="map">
+		select * from Connection_Info
+	</select>
+	<select id="insertConnection"	parameterType="Connection">
+	insert into Connection_Info(ciName,ciUrl,ciPort,ciDatabase,ciUser,ciPwd,ciEtc) 
+	values(#{ciName},#{ciUrl},#{ciPort},#{ciDatabase},#{ciUser},#{ciPwd},#{ciEtc})
+	</select>
+	<select id="updateConnection" resultType="map">
+	update Connection_Info 
+	set ciName=#{ciName}, ciUrl=#{ciUrl}, ciPort=#{ciPort}, ciDatabase=#{ciDatabase}, 
+	ciUser=#{ciUser}, ciPwd=#{ciPwd},ciEtc=#{ciEtc}, where uiNo=#{uiNo}
+	</select>
+	<select id="deleteConnection" resultType="map">
+	delete from Connection_Info where ciNo=#{ciNo}
+	</select>
+</mapper>
