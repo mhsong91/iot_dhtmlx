@@ -4,18 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 	<select id="selectUser" resultType="map">
-		select uiNo,uiName,uiAge,uiId,uiPwd,ciNo,address from user_info
+	 select * from user_info where uiId=${uiId} and uiPwd=#{uiPwd}
 	</select>
-	<select id="insertUser"	resultType="map" parameterType="map">
-	insert from user_info(uiName,uiAge,uiId,uiPwd,ciNo,address) 
-	values(#{uiName},#{uiAge},#{uiId},#{uiPwd},#{ciNo}#{address})
+	<select id="insertUser"	resultType="uvo" >
+	insert into user_info(uiName,uiId,uiPwd,uiEmail,admin) 
+	values(#{uiName},#{uiId},#{uiPwd},#{uiEmail},#{admin})
 	</select>
-	<select id="updateUser" resultType="map">
-	update user_info 
-	set uiName=#{uiName}, uiAge=#{uiAge}, uiId=#{uiId}, uiPwd=#{uiPwd}, 
-	ciNo=#{ciNo}, address=#{address}, where uiNo=#{uiNo}
-	</select>
-	<select id="deleteUser" resultType="map">
-	delete from user_info where uiNo=#{uiNo}
-	</select>
+	
 </mapper>

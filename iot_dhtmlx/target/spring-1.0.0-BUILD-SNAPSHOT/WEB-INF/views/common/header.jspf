@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<body>
+
+<div class="content">
+	<div class="admin-panel"><label for="toggle" class="admin-text">MENU</label></div>
+	<input type="checkbox" id="toggle">
+	<label class="cog octicon octicon-gear" for="toggle"></label>
+	<div class="menu">
+		<div class="arrow"></div>
+			<a href="/">HOME <span class="icon octicon octicon-person"></span></a>
+			<a href="${root}/emp/list">LIST <span class="icon octicon octicon-graph"></span></a>
+			<a href="${pPath}/emp/write">INSERT <span class="icon octicon octicon-cloud-upload"></span></a>
+			<a href="${pPath}/emp/delete">DELETE <span class="icon octicon octicon-pencil"></span></a>
+			<a href="${pPath}/emp/update">UPDATE <span class="icon octicon octicon-pencil"></span></a>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+</body>

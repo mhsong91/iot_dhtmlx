@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iot.spring.dao.UserDAO;
-import com.iot.spring.vo.Emp;
 import com.iot.spring.vo.UserInfo;
+import com.iot.spring.vo.UserVO;
 @Repository
 public class UserDAOImpl implements UserDAO{
 	@Autowired
@@ -23,9 +23,10 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public int UserInsert() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int UserInsert(UserVO uv) {
+		SqlSession ss=ssf.openSession();
+		int insert = ss.insert("user.insertUser",uv);
+		return insert;
 	}
 
 	@Override

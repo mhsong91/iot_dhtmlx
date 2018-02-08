@@ -4,18 +4,49 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Connection">
 	<select id="selectConnection" resultType="map">
-		select * from Connection_Info
+		select * from
+		Connection_Info
 	</select>
-	<select id="insertConnection"	parameterType="Connection">
-	insert into Connection_Info(ciName,ciUrl,ciPort,ciDatabase,ciUser,ciPwd,ciEtc) 
-	values(#{ciName},#{ciUrl},#{ciPort},#{ciDatabase},#{ciUser},#{ciPwd},#{ciEtc})
+	<select id="insertConnection" parameterType="Connection">
+		insert into
+		Connection_Info(ciName,ciUrl,ciPort,ciDatabase,ciUser,ciPwd,ciEtc)
+		values(#{ciName},#{ciUrl},#{ciPort},#{ciDatabase},#{ciUser},#{ciPwd},#{ciEtc})
 	</select>
 	<select id="updateConnection" resultType="map">
-	update Connection_Info 
-	set ciName=#{ciName}, ciUrl=#{ciUrl}, ciPort=#{ciPort}, ciDatabase=#{ciDatabase}, 
-	ciUser=#{ciUser}, ciPwd=#{ciPwd},ciEtc=#{ciEtc}, where uiNo=#{uiNo}
+		update Connection_Info
+		set ciName=#{ciName}, ciUrl=#{ciUrl}, ciPort=#{ciPort},
+		ciDatabase=#{ciDatabase},
+		ciUser=#{ciUser},
+		ciPwd=#{ciPwd},ciEtc=#{ciEtc}, where uiNo=#{uiNo}
 	</select>
 	<select id="deleteConnection" resultType="map">
-	delete from Connection_Info where ciNo=#{ciNo}
+		delete from
+		Connection_Info where ciNo=#{ciNo}
 	</select>
+	<select id="selectDatabase" resultType="map">
+		show databases
+	</select>
+
+	<select id="selectTable" resultType="tvo" parameterType="string">
+		select
+		table_name as tableName, table_comment as
+		tableComment,(data_length+index_length)/1024 as tableSize from
+		information_schema.tables
+		where table_schema=#{dbName}
+		and
+		table_type='BASE TABLE';
+	</select>
+	<select id="selectColumn" resultType="cvo" parameterType="String">
+		select column_name, column_default,
+		is_nullable,data_type,character_maximum_length,
+		column_type,column_key,column_comment
+		from information_schema.columns
+		where table_schema=#{cName}
+		and table_name='user_info'
+		order by ordinal_position
+		;
+
+	</select>
+
+
 </mapper>

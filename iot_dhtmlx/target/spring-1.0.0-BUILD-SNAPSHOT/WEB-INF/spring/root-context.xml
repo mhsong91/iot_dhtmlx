@@ -6,7 +6,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 			<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/iot2"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/dbconnector"/>
 		<property name="username" value="root"/>
 		<property name="password" value="test"/>
 	</bean>
@@ -15,6 +15,14 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"></property>
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean> 
+	<bean  class="com.iot.spring.dao.impl.NaverTransDAOImpl">
+		<property name="url" value="https://openapi.naver.com/v1/language/translate"></property>
+		<property name="contentType" value="application/x-www-form-urlencoded; charset=UTF-8"></property>
+		<property name="clientId" value="AWUIy_AwZe_gonPJmNuB"></property>
+		<property name="clientSecret" value="2UJWIrvxhv"></property>
+		<property name="source" value="en"></property>
+		<property name="target" value="Ko"></property>
 	</bean>
 	
 	
