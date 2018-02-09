@@ -1,6 +1,7 @@
 package com.iot.spring.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -30,15 +31,17 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public int UserDelete() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int UserDelete(Map<String,Object> map) {
+		SqlSession ss=ssf.openSession();
+		int delete=ss.delete("user.deleteUser",map);
+		return delete;
 	}
 
 	@Override
-	public int UserUpdate() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int UserUpdate(Map<String,Object> map) {
+		SqlSession ss=ssf.openSession();
+		int update=ss.update("user.updateUser",map);
+		return update;
 	}
 
 }

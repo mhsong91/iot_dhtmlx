@@ -1,6 +1,7 @@
 package com.iot.spring.Service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,15 +28,15 @@ public class UserServicImpl implements UserService{
 	}
 
 	@Override
-	public int deleteUser() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteUser(Map<String,Object> map) {
+		
+		return udao.UserDelete(map);
 	}
 
 	@Override
-	public int updateUser() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateUser(Map<String,Object> map) {
+		
+		return udao.UserUpdate(map);
 	}
 
 }

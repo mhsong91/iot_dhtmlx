@@ -35,5 +35,35 @@ ObjectMapper om = new ObjectMapper();
 
 		return map;
 	}
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> deleteUser(@RequestParam Map map){
+		
+		String resultStr="";
+		int result = us.deleteUser(map);
+
+		if (result >= 1) {
+			resultStr = "입력성공";
+		} else {
+			resultStr = "입력실패";
+		}
+		map.put("msg", resultStr);
+		
+		return map;
+	}
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> updateUser(@RequestParam Map map){
+		System.out.println(map+"                         ??");
+		String resultStr="";
+		int result = us.updateUser(map);
+
+		if (result >= 1) {
+			resultStr = "수정성공";
+		} else {
+			resultStr = "수정실패";
+		}
+		map.put("msg", resultStr);
+		
+		return map;
+	}
 	
 }
