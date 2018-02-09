@@ -39,9 +39,38 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public int UserUpdate(Map<String,Object> map) {
-		SqlSession ss=ssf.openSession();
+		 SqlSession ss=ssf.openSession();
 		int update=ss.update("user.updateUser",map);
 		return update;
+	}
+
+	@Override
+	public UserVO selectUserVO(UserVO ui) {
+		 SqlSession ss=ssf.openSession();
+		UserVO uui = ss.selectOne("user.selectUser",ui);
+		return uui;
+	}
+
+	@Override
+	public int inserUser(UserVO ui) {
+		 SqlSession ss=ssf.openSession();
+			int uui = ss.insert("user.insertUser",ui);
+			
+		return uui;
+	}
+
+	@Override
+	public int checkUserVO(UserVO ui) {
+		 SqlSession ss=ssf.openSession();
+			int uui = ss.selectOne("user.checkUser",ui);
+		return uui;
+	}
+
+	@Override
+	public List<UserVO> selectlist(UserVO uv) {
+		 SqlSession ss=ssf.openSession();
+		 List<UserVO> list = ss.selectList("user.selectUser",uv);
+		return list;
 	}
 
 }

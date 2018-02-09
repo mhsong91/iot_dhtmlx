@@ -8,6 +8,7 @@
 <c:set var="ver" value="?version=1.0.0"/>
 <c:set var="rPath" value="${root}/resources"/>
 <c:set var="pPath" value="${root}/path"/>
+<c:set var="isLogin" value="${(empty sessionScope.isLogin) ? false:sessionScope.isLogin}"/>
 
 <script src="${rPath}/ui/js/jquery-3.2.1.js${ver}"></script>
 <script src="${rPath}/ui/js/grid-obj.js${ver}"></script>
@@ -15,6 +16,10 @@
 <script src="${rPath}/ui/js/common.js${ver}"></script>
 <script src="${rPath}/ui/js/bootstrap-table.js${ver}"></script>
 <script src="${rPath}/dx/dhtmlx.js${ver}"></script>
+<!-- Chrome, Safari, IE -->
+<link rel="shortcut icon" href="${rPath}/imgs/favicon.png">
+<!-- Firefox, Opera (Chrome and Safari say thanks but no thanks) -->
+<link rel="icon" href="${rPath}/imgs/favicon.png">
 
 
 

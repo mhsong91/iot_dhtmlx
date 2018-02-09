@@ -1,8 +1,15 @@
 package com.iot.spring.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +26,39 @@ public class UserController {
 UserService us;
 
 ObjectMapper om = new ObjectMapper();
+private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	@RequestMapping(value ="/login", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> login(@Valid UserVO ui,HttpSession hs){//벨리드는 자동으로 vo에들가는데 스트링이나 int가다르면 오류가난다
+		Map<String,Object> map=new HashMap<String,Object>();
+		logger.info("Before Login HttpSession=>{}",hs.getAttribute("user"));
+		hs.setAttribute("user",ui);
+		hs.setAttribute("isLogin",true);
+		logger.info("Before Login HttpSession=>{}",hs.getAttribute("user"));
+		ui=us.getUserVO(ui);
+		map.put("resurt",false);
+		map.put("msg","로그인실패");
+		if(ui!=null) {
+			hs.setAttribute("user",ui);
+			hs.setAttribute("isLogin",true);
+		map.put("msg","로그인성공");
+		map.put("loginOk", true);
+		}
+		return map;
+	}
+	@RequestMapping(value ="/signup", method = RequestMethod.POST)
+	public @ResponseBody Map<String,Object> signup(@Valid UserVO ui,HttpSession hs){//벨리드는 자동으로 vo에들가는데 스트링이나 int가다르면 오류가난다
+		Map<String,Object> map=new HashMap<String,Object>();
+		us.inserUser(map, ui);
+		
+		return map;
+	}
+	@RequestMapping(value="/list" ,method = RequestMethod.GET)
+	public @ResponseBody List<UserVO> list(UserVO uv){
+		List<UserVO> userlist=us.selectlist(uv);
+		
+		return userlist;
+	}
+	
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public @ResponseBody Map insertuser(@RequestParam Map map) {
@@ -42,9 +82,9 @@ ObjectMapper om = new ObjectMapper();
 		int result = us.deleteUser(map);
 
 		if (result >= 1) {
-			resultStr = "입력성공";
+			resultStr = "삭제성공";
 		} else {
-			resultStr = "입력실패";
+			resultStr = "삭제실패";
 		}
 		map.put("msg", resultStr);
 		

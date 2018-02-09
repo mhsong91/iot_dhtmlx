@@ -11,5 +11,9 @@ public interface UserDAO {
 	public int UserInsert(UserVO uv);
 	public int UserDelete(Map<String,Object> map);
 	public int UserUpdate(Map<String,Object> map);
+	UserVO selectUserVO(UserVO ui);
+	int inserUser(UserVO ui);
+	int checkUserVO(UserVO ui);
+	 List<UserVO> selectlist( UserVO uv);
 
 }

@@ -39,4 +39,40 @@ public class UserServicImpl implements UserService{
 		return udao.UserUpdate(map);
 	}
 
+	@Override
+	public UserVO getUserVO(UserVO ui) {
+		
+		return udao.selectUserVO(ui);
+	}
+
+	public boolean isDuplUserInfo(UserVO ui) {
+		if(udao.checkUserVO(ui)==1) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public void inserUser(Map<String,Object> map,UserVO ui) {
+		map.put("msg","회원가입실패");
+		map.put("signupOk",false);
+		if(isDuplUserInfo(ui)) {
+			map.put("msg",ui.getUiId()+"는 이미 있어요 다시입력하세요");
+			return;
+			}
+		int result=udao.inserUser(ui);
+		
+		if(result==1) {
+			map.put("msg","회원가입성공");
+			map.put("signupOk",true);
+		}
+		
+	}
+
+	@Override
+	public List<UserVO> selectlist(UserVO uv) {
+		
+		return udao.selectlist(uv);
+	}
+
 }
