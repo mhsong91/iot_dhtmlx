@@ -3,19 +3,20 @@ package com.iot.spring.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.SqlSession;
+
 import com.iot.spring.vo.ColumnVO;
 import com.iot.spring.vo.ConnectionInfoVO;
 import com.iot.spring.vo.TableVO;
 
 public interface ConnectionDAO {
-	public List<ConnectionInfoVO> selectEmpList();
-	public ConnectionInfoVO selectEmp();
-	public int insertConnection(ConnectionInfoVO ci);
-	public int deleteConnection();
-	public int updateConnection();
-	public List<Map<String, Object>> selectDatabaseList(int ciNo) throws Exception;
-	public List<ConnectionInfoVO> selectConnectionInfoList(ConnectionInfoVO cvo);
-	public List<TableVO> selectTableList(String dbName);
-	public List<ColumnVO> selectColumnList(String cName);
 
+	public List<ConnectionInfoVO> selectConnectionList(ConnectionInfoVO ci);
+	public ConnectionInfoVO selectConnection(int ciNo);
+	public int insertConnection(ConnectionInfoVO ci);
+	public List<Map<String, Object>> selectDatabaseList(SqlSession ss) throws Exception ;
+	List<TableVO> selectTableList(SqlSession ss, String dbName);
+	List<ColumnVO> selectColumnList(String dbName);
 }

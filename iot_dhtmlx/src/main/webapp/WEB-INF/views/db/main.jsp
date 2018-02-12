@@ -28,11 +28,28 @@ function connectionListCB(res){
        items: res.list
    });
    dbTree.attachEvent("onDblClick",function(id){
-      var level=dbtree.getItemText(id);
-      var au=new AjaxUtill("${root}/connection/tables/"+text+"/"+id,null,"get");
-      su.send(tableListCB);
-   });
+	      var level = dbTree.getLevel(id);
+	      if(level==2){
+	         var text = dbTree.getItemText(id);
+	         var au = new AjaxUtil("${root}/connection/tables/" + text + "/" + id,null,"get");
+	         au.send(tableListCB); 
+	      }
+	   });
 }
+function tableListCB(res){
+	   var parentId = res.parentId;
+	   var i=1;
+	   for(var table of res.list){
+	      var id = parentId + "_" + i++;
+	      var text = table.tableName;
+	      if(table.tableComment!=""){
+	         text += "[" + table.tableComment + "]";
+	      }
+	      text += ":"+ table.tableSize + "KB"; 
+	      dbTree.addItem(id, text, parentId);
+	   }
+	   dbTree.openItem(parentId);
+	}
 function addConnectionCB(res){
    console.log(res);
 }

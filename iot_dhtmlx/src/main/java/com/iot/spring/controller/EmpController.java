@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.codehaus.jackson.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.iot.spring.User;
 import com.iot.spring.Service.EmpService;
 import com.iot.spring.Service.UserService;
 import com.iot.spring.dao.NaverTransDAO;
