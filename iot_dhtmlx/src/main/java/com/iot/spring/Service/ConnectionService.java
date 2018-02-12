@@ -13,7 +13,9 @@ public interface ConnectionService {
 	public int insertConnection(ConnectionInfoVO ci);
 	public int deleteConnection();
 	public int updateConnection();
-	public List<Map<String,Object>> getDatabaseList();
+	public List<Map<String,Object>> getDatabaseList(int ciNo) throws Exception;
 	public List<TableVO> getTableList(String dbName);
 	public List<ColumnVO> getColumnList(String cName);
+	public List<Map<String, Object>> ConnectionList();
+	public List<ConnectionInfoVO> ConnectionInfoList(ConnectionInfoVO cvo);
 }

@@ -13,7 +13,8 @@ public interface ConnectionDAO {
 	public int insertConnection(ConnectionInfoVO ci);
 	public int deleteConnection();
 	public int updateConnection();
-	public List<Map<String, Object>> selectDatabaseList();
+	public List<Map<String, Object>> selectDatabaseList(int ciNo) throws Exception;
+	public List<ConnectionInfoVO> selectConnectionInfoList(ConnectionInfoVO cvo);
 	public List<TableVO> selectTableList(String dbName);
 	public List<ColumnVO> selectColumnList(String cName);
 

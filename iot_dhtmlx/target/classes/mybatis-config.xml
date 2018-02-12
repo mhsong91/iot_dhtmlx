@@ -12,7 +12,7 @@
 <typeAliases>
 	<typeAlias alias="emp" type="com.iot.spring.vo.Emp"/>
 	<typeAlias alias="uvo" type="com.iot.spring.vo.UserVO"/>
-	<typeAlias alias="Connection" type="com.iot.spring.vo.ConnectionInfoVO"/>
+	<typeAlias alias="con" type="com.iot.spring.vo.ConnectionInfoVO"/>
 	<typeAlias alias="tvo" type="com.iot.spring.vo.TableVO"/>
 	<typeAlias alias="cvo" type="com.iot.spring.vo.ColumnVO"/>
 </typeAliases>

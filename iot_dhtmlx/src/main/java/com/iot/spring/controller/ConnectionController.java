@@ -3,6 +3,8 @@ package com.iot.spring.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import com.iot.spring.Service.ConnectionService;
 import com.iot.spring.vo.ColumnVO;
 import com.iot.spring.vo.ConnectionInfoVO;
 import com.iot.spring.vo.TableVO;
+import com.iot.spring.vo.UserVO;
 
 @Controller
 @RequestMapping("/connection")
@@ -46,19 +49,28 @@ public class ConnectionController {
 		return map;
 	}
 
-	@RequestMapping(value = "/db_list", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> getDatabaseList(Map<String, Object> map) {
-		List<Map<String, Object>> list = cs.getDatabaseList();
-		map.put("dbList", list);
-
+	@RequestMapping(value = "/db_list/{ciNo}", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> getDatabaseList(@PathVariable("ciNo") int ciNo,Map<String, Object> map) {
+		
+		List<Map<String, Object>> list = null; 
+		try {
+			list=cs.getDatabaseList(ciNo);
+			map.put("list",list);
+			map.put("parentId",ciNo);
+		}catch(Exception e){
+			map.put("error",e.getMessage());
+						
+		}
+		
 		return map;
 	}
+	
 
 	@RequestMapping(value = "/columns/{cName}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getColumnsList(@PathVariable("cName") String cName,
 			Map<String, Object> map) {
 		List<ColumnVO> columnList = cs.getColumnList(cName);
-		map.put("dblist",columnList);
+		map.put("dblist", columnList);
 
 		return map;
 	}
@@ -71,5 +83,21 @@ public class ConnectionController {
 
 		return map;
 	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> getConnectionList(Map<String, Object> map, HttpSession hs) {
+	      UserVO uvo = new UserVO();
+	      if(hs.getAttribute("user")!=null) {
+	         uvo = (UserVO)hs.getAttribute("user");
+	      }else {
+	         uvo.setUiId("aa");
+	      }
+	      ConnectionInfoVO cvo = new ConnectionInfoVO();
+	      cvo.setUiId(uvo.getUiId());   
+	      List<ConnectionInfoVO> conList = cs.ConnectionInfoList(cvo);
+	      map.put("list", conList);
+	      return map;
+	}
+	
 
 }

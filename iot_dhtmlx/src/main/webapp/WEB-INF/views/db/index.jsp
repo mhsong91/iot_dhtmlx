@@ -67,7 +67,7 @@
 	          var res = JSON.parse(res);
 	          alert(res.msg);
 	          if(res.loginOk){
-	        	  location.href="${pPath}/user/list";
+	        	  location.href="${pPath}/db/main";
 	          }
 	       }else{  
 	          console.log(res);

@@ -8,10 +8,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iot.spring.common.dbcon.DBConnector;
 import com.iot.spring.dao.ConnectionDAO;
 import com.iot.spring.vo.ColumnVO;
 import com.iot.spring.vo.ConnectionInfoVO;
-import com.iot.spring.vo.Emp;
 import com.iot.spring.vo.TableVO;
 
 @Repository
@@ -52,12 +52,15 @@ public class ConnectionDAOImpl implements ConnectionDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectDatabaseList() {
+	public List<Map<String, Object>> selectDatabaseList(int ciNo) throws Exception {
 		SqlSession ss = ssf.openSession();
-
-		List<Map<String, Object>> list = ss.selectList("Connection.selectDatabase");
+		List<Map<String, Object>> result= null;
+		ConnectionInfoVO ci = ss.selectOne("Connection.selectConnectionWithCiNo",ciNo);
 		ss.close();
-		return list;
+		DBConnector dbc=new DBConnector(ci);
+		ss=dbc.getSqlSession();
+		result=ss.selectList("Connection.selectDatabase");
+		return result;
 	}
 
 	@Override
@@ -78,5 +81,15 @@ public class ConnectionDAOImpl implements ConnectionDAO {
 		ss.close();
 		return columnList;
 	}
+
+	@Override
+	public List<ConnectionInfoVO> selectConnectionInfoList(ConnectionInfoVO cvo) {
+		final SqlSession ss = ssf.openSession();
+		List<ConnectionInfoVO>  conList = ss.selectList("Connection.selectConnection",cvo);
+		ss.close();
+		return conList;
+	}
+
+	
 
 }

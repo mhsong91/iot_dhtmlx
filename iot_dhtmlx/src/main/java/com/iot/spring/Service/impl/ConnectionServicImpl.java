@@ -48,8 +48,8 @@ public class ConnectionServicImpl implements ConnectionService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getDatabaseList() {
-		List<Map<String, Object>> dbList=cdao.selectDatabaseList();
+	public List<Map<String, Object>> getDatabaseList(int ciNo) throws Exception  {
+		List<Map<String, Object>> dbList=cdao.selectDatabaseList(ciNo);
 				int idx=0;
 		for(Map<String,Object> mDb:dbList) {
 			mDb.put("id",++idx);
@@ -69,6 +69,24 @@ public class ConnectionServicImpl implements ConnectionService{
 	public List<ColumnVO> getColumnList(String cName) {
 		
 		return cdao.selectColumnList(cName);
+	}
+
+	@Override
+	public List<ConnectionInfoVO> ConnectionInfoList(ConnectionInfoVO cvo) {
+		List<ConnectionInfoVO> conList=cdao.selectConnectionInfoList(cvo);
+/*				int idx=0;
+		for(Map<String,Object> mDb:dbList) {
+			mDb.put("id",++idx);
+			mDb.put("text", mDb.get("Database"));
+			mDb.put("items",new Object[] {});
+		}*/
+		return conList;
+	}
+
+	@Override
+	public List<Map<String, Object>> ConnectionList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
